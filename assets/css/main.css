@@ -1,0 +1,46 @@
+
+
+
+body {
+  background: url(../images/coffee.jpg)  no-repeat fixed; /* pour ajuster l'image car decalage pour taille de container */
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */      
+ 
+}
+
+ h1{
+  font-family: 'Archivo Black', sans-serif;
+	font-size: 100px;
+	font-weight: 900;
+	color: #124D5D;
+  line-height: 80px; 
+
+}
+
+
+h2{
+  font-family: 'Permanent Marker', cursive;
+	font-size: 75px;
+	font-weight: 900;
+}
+
+
+
+button {swidth:200px;
+height: 50px;
+font-family: 'Archivo Black', sans-serif;
+font-weight: bold;
+font-size: ;
+}        
+
+
+.square {
+width: 350px;
+height: 100px;
+background: none;
+border: solid;
+border-style: double;
+border-color: grey;
+text-align: center;
+}
+

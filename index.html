@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Permanent+Marker" rel="stylesheet">
+
+	<script src="jquery-3.2.1.js"> </script>
+
+</head>
+
+<body>
+
+  
+<div class= " container center">
+    
+    <h2>Prochain café dans : </h2><br>
+    <h1 class="square" id="timeToWait">0</h1><br>
+
+
+    <button class="btn btn-success btn-lg" id="action">START</button>
+    <button class="btn btn-info btn-lg" id="reset">RESET</button>
+    <button class="btn btn-danger btn-lg" id="pause">BREAK</button>
+    <button hidden="hidden" id="tempDePause">tempDePause</button>
+</div>
+
+<script>
+var workMin=20;  // Minute
+var workSec=0;   // Seconde
+var workDse=0;  // dixieme de secondes
+
+var pauseMin=5;
+var pauseSec=0;
+var pauseDse=0;
+
+
+
+ var worktmp=(workMin*60+workSec)*10+workDse;
+ var pausetmp= (pauseMin*60+pauseSec)*10+pauseDse;
+ var pause = 0;
+ $("#timeToWait").html(workMin+':'+workSec+'');
+
+$("#action").click(function(){
+    console.log("workchrono") ;
+        var workchrono=setInterval(function(){
+
+            if (pause == 0){
+               workMin=Math.floor(worktmp/600); // -> minute
+               workSec=Math.floor( (worktmp-workMin*600) / 10 ); // -> seconde
+                     $("#timeToWait").html(workMin+':'+workSec+'')
+               worktmp--; // On enlève 1 dixième de seconde
+            }
+
+            $("#pause").click(function(){
+                        if (pause == 0){
+                            pause = 1;
+                        }else{
+                            pause = 0;
+                        }
+            });
+
+            $("#reset").click(function(){
+            clearInterval(workchrono);
+            workMin=20  // Minute
+                     ,workSec=0   // Seconde
+                     ,workDse=0; 
+            worktmp=(workMin*60+workSec)*10+workDse;
+            $("#timeToWait").html(workMin+':'+workSec+'')
+             });
+
+            if (worktmp==0){
+                clearInterval(workchrono);
+                 workMin=20  // Minute
+                     ,workSec=0   // Seconde
+                     ,workDse=0;  // dixième de secondes
+            worktmp=(workMin*60+workSec)*10+workDse;
+
+                $("#tempDePause").click();
+            }
+
+        },100); /* 100ms -> 1 dixieme de seconde / 1000ms -> 1s */
+});
+
+
+$("#tempDePause").click(function(){
+    console.log("tempDePause") ;
+        $("#timeToWait").html(pauseMin+':'+pauseSec+'');
+
+        console.log("tempDePause") ;
+            var pausechrono=setInterval(function(){
+                if (pause == 0){
+
+
+               pauseMin=Math.floor(pausetmp/600); // -> minute
+
+               pauseSec=Math.floor( (pausetmp-pauseMin*600) / 10 ); // -> seconde
+
+                 $("#timeToWait").html(pauseMin+':'+pauseSec+'')
+               pausetmp--; // On enlève 1 dixième de seconde
+                }
+                $("#pause").click(function(){
+                            if (pause == 0){
+                                pause = 1;
+                            }else{
+                                pause = 0;
+                            }
+            });
+
+            $("#reset").click(function(){
+                clearInterval(pausechrono);
+
+                $("#timeToWait").html(workMin+':'+workSec+'');
+            });
+
+                if (pausetmp==0){
+                    clearInterval(pausechrono);
+                    alert("Temps de pause terminé")
+                    pauseMin=5  // Minute
+                        var pauseSec=0   // Seconde
+                        var pauseDse=0;
+
+                    pausetmp= (pauseMin*60+pauseSec)*10+pauseDse;
+                $("#action").click();
+            }
+
+          },100); /* 100ms -> 1 dixieme de segundo / 1000ms -> 1s */
+});
+
+
+</script>
+
+</body>
+</html>
+
+
